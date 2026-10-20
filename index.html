@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liz Agenda — The Five C's</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap">
+<style>
+  :root {
+    --accent: #3c4538;
+    --ink: #000;
+    --body: #333;
+    --meta: #555;
+    --rule: #c8c8c8;
+    --chip: #f3f3f1;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: #e9e9e6;
+    color: var(--ink);
+    font-family: Gotham, Montserrat, "Helvetica Neue", Arial, sans-serif;
+    padding: 32px 16px;
+  }
+  .page {
+    position: relative;
+    width: 816px;
+    max-width: 100%;
+    min-height: 1056px;
+    margin: 0 auto;
+    padding: 52px 64px 44px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .page::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 10px;
+    background: var(--accent);
+  }
+  .topline {
+    display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--ink); padding-bottom: 8px;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .topline strong { font-weight: 700; }
+  .topline span { font-weight: 500; letter-spacing: 0.08em; color: #444; }
+  h1 {
+    margin: 0; font-size: 54px; font-weight: 900; line-height: 1.02;
+    letter-spacing: -0.01em; text-transform: uppercase;
+  }
+  .lede { margin: 8px 0 0; font-size: 15px; line-height: 1.5; color: var(--body); max-width: 560px; }
+  .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  .fact { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 12px; background: var(--chip); }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--meta); }
+  .fact .value { font-size: 14px; font-weight: 700; }
+  .section-head {
+    display: flex; justify-content: space-between;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    padding-bottom: 8px; border-bottom: 1px solid var(--ink);
+  }
+  .section-head span:last-child { color: #444; }
+  .agenda { list-style: none; margin: 0; padding: 0; }
+  .item {
+    display: grid; grid-template-columns: 64px minmax(0, 1fr) 112px; gap: 16px; align-items: start;
+    padding: 14px 0; border-bottom: 1px solid var(--rule);
+  }
+  .when { display: flex; flex-direction: column; gap: 2px; }
+  .num { font-size: 15px; font-weight: 900; color: var(--accent); }
+  .mins { font-size: 11px; color: var(--meta); }
+  .what { display: flex; flex-direction: column; gap: 3px; }
+  .what h2 { margin: 0; font-size: 17px; font-weight: 900; text-transform: uppercase; }
+  .what p { margin: 0; font-size: 12.5px; line-height: 1.45; color: var(--body); }
+  .owner {
+    justify-self: end; font-size: 11px; font-weight: 500;
+    padding: 5px 12px; border-radius: 999px; border: 1px solid var(--ink);
+  }
+  .actions { display: flex; flex-direction: column; flex-grow: 1; }
+  .actions .row {
+    display: grid; grid-template-columns: minmax(0, 1fr) 140px 96px; gap: 16px;
+    min-height: 34px; border-bottom: 1px solid var(--rule);
+  }
+  .actions .row.head {
+    min-height: 0; padding-bottom: 8px; border-bottom: 1px solid var(--ink);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  footer {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #444;
+  }
+  footer span:last-child { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    body { padding: 0; }
+    .page { padding: 40px 16px 32px; min-height: 0; box-shadow: none; }
+    h1 { font-size: 40px; }
+    .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .item { grid-template-columns: 48px minmax(0, 1fr); }
+    .owner { grid-column: 2; justify-self: start; }
+    .actions .row { grid-template-columns: minmax(0, 1fr) 96px 64px; }
+  }
+
+  @page { size: letter; margin: 0; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { width: 816px; height: 1056px; min-height: 0; box-shadow: none; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="topline">
+    <strong>Production Meeting</strong>
+    <span>[Campus] · Week of [Date]</span>
+  </div>
+
+  <header>
+    <h1>The Five C&#8217;s</h1>
+    <p class="lede">Catchup, Care, Concerns, Calendar, Church. Same five every time, so we can move fast and leave with clear owners.</p>
+  </header>
+
+  <section class="facts" aria-label="Meeting details">
+    <div class="fact"><span class="label">Date</span><span class="value">[Tue, Oct 27]</span></div>
+    <div class="fact"><span class="label">Time</span><span class="value">[10:00–11:00 AM]</span></div>
+    <div class="fact"><span class="label">Where</span><span class="value">[Room / Zoom]</span></div>
+    <div class="fact"><span class="label">Leads</span><span class="value">Liz</span></div>
+  </section>
+
+  <section>
+    <div class="section-head"><span>Agenda</span><span>60 min</span></div>
+    <ol class="agenda">
+      <li class="item">
+        <div class="when"><span class="num">01</span><span class="mins">10 min</span></div>
+        <div class="what"><h2>Catchup</h2><p>How is everyone doing? Wins and quick updates since we last met.</p></div>
+        <span class="owner">[Name]</span>
+      </li>
+      <li class="item">
+        <div class="when"><span class="num">02</span><span class="mins">10 min</span></div>
+        <div class="what"><h2>Care</h2><p>Who on our team, volunteers or church family needs prayer, follow-up or support?</p></div>
+        <span class="owner">[Name]</span>
+      </li>
+      <li class="item">
+        <div class="when"><span class="num">03</span><span class="mins">15 min</span></div>
+        <div class="what"><h2>Concerns</h2><p>What broke, what is at risk, and what needs a decision. Name an owner for each.</p></div>
+        <span class="owner">[Name]</span>
+      </li>
+      <li class="item">
+        <div class="when"><span class="num">04</span><span class="mins">15 min</span></div>
+        <div class="what"><h2>Calendar</h2><p>This weekend, then the next 2–4 weeks: services, events, series launches and deadlines.</p></div>
+        <span class="owner">[Name]</span>
+      </li>
+      <li class="item">
+        <div class="when"><span class="num">05</span><span class="mins">10 min</span></div>
+        <div class="what"><h2>Church</h2><p>The bigger picture: what is happening across The Life Church and how our team can serve it.</p></div>
+        <span class="owner">[Name]</span>
+      </li>
+    </ol>
+  </section>
+
+  <section class="actions" aria-label="Action items">
+    <div class="row head"><span>Action Items</span><span>Owner</span><span>Due</span></div>
+    <div class="row"><span></span><span></span><span></span></div>
+    <div class="row"><span></span><span></span><span></span></div>
+    <div class="row"><span></span><span></span><span></span></div>
+    <div class="row"><span></span><span></span><span></span></div>
+    <div class="row"><span></span><span></span><span></span></div>
+  </section>
+
+  <footer><span>The Life Church</span><span>Moving Life Forward</span></footer>
+</main>
+</body>
+</html>
